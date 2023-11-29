@@ -1,0 +1,32 @@
+            interest_rate = 10
+        else:
+            interest_rate = 15
+        if investment_option == "real estate trust funds":
+            periods_per_year = 4
+        elif investment_option == "dividend paying stocks":
+            periods_per_year = 2
+        elif investment_option == "money market funds":
+            periods_per_year = 12
+        else:
+            periods_per_year = 1
+        interest_rate_per_period = interest_rate / periods_per_year
+        periods = years * periods_per_year
+        interest = principal * (1 + interest_rate_per_period/100)**periods
+        total_amount = principal + interest
+        print("Total amount after", years, "years with", investment_option, "compounding and an interest rate of", interest_rate, "%:", round(total_amount, 2))
+    choice = input("Do you want to logout? (y/n): ")
+    if choice == "y":
+        return False
+    else:
+        return True
+while True:
+    login_success, username = login()
+    if login_success:
+        print(f"Welcome, {username}!")
+        while True:
+            if not main(username):
+                break
+    else:
+        choice = input("Do you want to signup? (y/n): ")
+        if choice == "y":
+            signup()
